@@ -36,10 +36,16 @@ namespace FilmFocusApi.Infrastructure.Adapters.Input
 
             if (!authenticateResult.Succeeded)
                 return Unauthorized("Authentication failed.");
+            try
+            {
+                AuthenticatedUserDTO user = await _authenticationService.AuthUser(authenticateResult);
+                return Ok(new { message = "Authentication succcess", user = user });
 
-            AuthenticatedUserDTO user = await _authenticationService.AuthUser(authenticateResult);
+            }catch(ApplicationException ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
 
-            return Ok(new {message = "Authentication succcess", user= user});
         }
 
         [AllowAnonymous]

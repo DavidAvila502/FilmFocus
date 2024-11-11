@@ -1,7 +1,9 @@
 ﻿using FilmFocusApi.Application.DTOs.Authentication;
 using FilmFocusApi.Application.Interfaces;
+using FilmFocusApi.Domain.Entities;
+using FilmFocusApi.Infrastructure.Database;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace FilmFocusApi.Application.Services.Authentication
@@ -10,10 +12,12 @@ namespace FilmFocusApi.Application.Services.Authentication
     {
 
         private readonly IGenerateJwtTokenService _generateJwtTokenService;
+        private readonly ApplicationDbContext _context;
 
-        public AuthenticateUserService(IGenerateJwtTokenService generateJwtTokenService)
+        public AuthenticateUserService(IGenerateJwtTokenService generateJwtTokenService, ApplicationDbContext context)
         {
             _generateJwtTokenService = generateJwtTokenService;
+            _context = context;
         }
         public async Task<AuthenticatedUserDTO> AuthUser(AuthenticateResult authenticateResult)
         {
@@ -26,8 +30,27 @@ namespace FilmFocusApi.Application.Services.Authentication
 
             string userJwtToken = _generateJwtTokenService.GenerateJwtToken(googleId, email, name);
 
+            User? foundUser = await _context.Users.FirstOrDefaultAsync(u => u.GoogleId == googleId);
 
-            return new AuthenticatedUserDTO() { Username= name, Email= email, JwtToken= userJwtToken };
+            if (foundUser != null) {
+                return new AuthenticatedUserDTO() { Username = foundUser.Name, Email = foundUser.Email, JwtToken = userJwtToken };
+            }
+
+            try
+            {
+                User newUser = new User() { Name=name,Email=email,GoogleId=googleId,ProfileImageUrl=profilePicture};
+
+                await _context.Users.AddAsync(newUser);
+
+                await _context.SaveChangesAsync();
+
+                return new AuthenticatedUserDTO() { Username = newUser.Name, Email = newUser.Email, JwtToken = userJwtToken };
+            }
+            catch (Exception ex) {
+                throw new ApplicationException("Error trying to add the user.");
+            }
+
+ 
 
         }
 

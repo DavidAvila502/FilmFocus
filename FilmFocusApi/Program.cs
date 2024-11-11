@@ -1,4 +1,5 @@
 using FilmFocusApi.Infrastructure.Config.Settings;
+using FilmFocusApi.Infrastructure.Database;
 using FilmFocusApi.Infrastructure.DependencyInjection;
 
 
@@ -15,6 +16,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCustomAuthentication(builder);
 
 builder.Services.AddDependencyInjectionServices();
+
+builder.Services.AddDbContextService(builder);
 
 var app = builder.Build();
 
