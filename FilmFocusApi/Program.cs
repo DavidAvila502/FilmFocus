@@ -15,9 +15,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCustomAuthentication(builder);
 
+builder.Services.AddDbContextService(builder);
+
 builder.Services.AddDependencyInjectionServices();
 
-builder.Services.AddDbContextService(builder);
 
 var app = builder.Build();
 

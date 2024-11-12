@@ -16,8 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Application\InputPorts\" />
-    <Folder Include="Application\OutputPorts\" />
-    <Folder Include="Infrastructure\Adapters\Output\" />
   </ItemGroup>
 
   <ItemGroup>
