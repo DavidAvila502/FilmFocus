@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
@@ -16,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Application\InputPorts\" />
+    <Folder Include="Infrastructure\Adapters\Output\ExternalServices\" />
   </ItemGroup>
 
   <ItemGroup>

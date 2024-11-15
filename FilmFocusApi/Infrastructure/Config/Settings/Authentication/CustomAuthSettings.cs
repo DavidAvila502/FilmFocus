@@ -2,12 +2,12 @@
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace FilmFocusApi.Infrastructure.Config.Settings
+namespace FilmFocusApi.Infrastructure.Config.Settings.Authentication
 {
     public static class CustomAuthSettings
     {
 
-        public static IServiceCollection AddCustomAuthentication(this IServiceCollection Services,  WebApplicationBuilder builder)
+        public static IServiceCollection AddCustomAuthentication(this IServiceCollection Services, WebApplicationBuilder builder)
         {
 
             Services.AddAuthentication(options =>
@@ -35,7 +35,7 @@ namespace FilmFocusApi.Infrastructure.Config.Settings
             });
 
             return Services;
-        } 
+        }
 
     }
 }
