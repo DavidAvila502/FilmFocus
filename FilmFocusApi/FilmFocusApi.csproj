@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\InputPorts\" />
     <Folder Include="Infrastructure\Adapters\Output\ExternalServices\" />
   </ItemGroup>
 

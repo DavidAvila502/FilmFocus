@@ -11,12 +11,10 @@ namespace FilmFocusApi.Infrastructure.Adapters.Input
     [ApiController]
     public class GoogleAuthController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
         private readonly IAuthenticateUserService _authenticationService;
 
-        public GoogleAuthController(IConfiguration configuration, IAuthenticateUserService authenticationService)
+        public GoogleAuthController(IAuthenticateUserService authenticationService)
         {
-            _configuration = configuration;
             _authenticationService = authenticationService;
         }
 

@@ -33,7 +33,7 @@ namespace FilmFocusApi.Application.Services.Authentication
             User? foundUser = await _userRepository.GetUserByGoogleId(googleId);
 
             if (foundUser != null) {
-                return new AuthenticatedUserDTO() { Username = foundUser.Name, Email = foundUser.Email, JwtToken = userJwtToken };
+                return new AuthenticatedUserDTO() { Username = foundUser.Name, Email = foundUser.Email, JwtToken = userJwtToken, ProfilePicture =profilePicture };
             }
 
             try
