@@ -1,8 +1,7 @@
-﻿
-using FilmFocusApi.Application.DTOs.Authentication;
+﻿using FilmFocusApi.Application.DTOs.Authentication;
 using Microsoft.AspNetCore.Authentication;
 
-namespace FilmFocusApi.Application.Interfaces
+namespace FilmFocusApi.Application.Interfaces.Authentication
 {
     public interface IAuthenticateUserService
     {

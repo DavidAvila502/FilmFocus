@@ -1,5 +1,5 @@
 ﻿using FilmFocusApi.Application.DTOs.Authentication;
-using FilmFocusApi.Application.Interfaces;
+using FilmFocusApi.Application.Interfaces.Authentication;
 using FilmFocusApi.Application.OutputPorts;
 using FilmFocusApi.Domain.Entities;
 using Microsoft.AspNetCore.Authentication;

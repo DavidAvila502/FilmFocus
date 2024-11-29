@@ -12,7 +12,7 @@ namespace FilmFocusApi.Domain.Entities
         [Column("score")]
         public Decimal  Score { get; set; }
         [Column("releaseDate")]
-        public DateTime ReleaseDate {  get; set; }
+        public DateOnly ReleaseDate {  get; set; }
         [Column("synopsis")]
         public string Synopsis { get; set; }
         [Column("imageUrl")]

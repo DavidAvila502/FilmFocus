@@ -22,9 +22,14 @@ namespace FilmFocusApi.Infrastructure.Adapters.Input
         }
 
         [HttpPost]
-        public async Task<ActionResult<Movie>> CreateMovie([FromBody]MovieInsertDTO movieInsertDTO)
+        public async Task<ActionResult<Movie>> CreateMovie([FromForm]MovieInsertDTO movieInsertDTO)
         {
-            throw new NotImplementedException("Unimplemented endpoint");
+
+            return Ok( new Movie { Id = 1, Name = movieInsertDTO.Name, ImageUrl= "www.helloWorld.com", ReleaseDate= movieInsertDTO.ReleaseDate, Score= movieInsertDTO.Score});
+
+            
+
+            //throw new NotImplementedException("Unimplemented endpoint");
         }
 
         [HttpPut("{id}")]

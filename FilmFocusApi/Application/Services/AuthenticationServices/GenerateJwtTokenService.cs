@@ -1,4 +1,4 @@
-﻿using FilmFocusApi.Application.Interfaces;
+﻿using FilmFocusApi.Application.Interfaces.Authentication;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

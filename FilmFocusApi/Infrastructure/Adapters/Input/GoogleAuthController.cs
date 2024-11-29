@@ -1,5 +1,5 @@
 ﻿using FilmFocusApi.Application.DTOs.Authentication;
-using FilmFocusApi.Application.Interfaces;
+using FilmFocusApi.Application.Interfaces.Authentication;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
