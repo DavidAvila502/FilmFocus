@@ -1,5 +1,6 @@
 ﻿using FilmFocusApi.Application.DTOs.Movies;
 using FilmFocusApi.Application.InputPorts;
+using FilmFocusApi.Application.Interfaces.MovieInterfaces;
 using FilmFocusApi.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,14 @@ namespace FilmFocusApi.Infrastructure.Adapters.Input
     [ApiController]
     public class MovieController : ControllerBase , IMoviePort
     {
+        private readonly ICreateMovieService _createMovieService;
+
+        public MovieController(ICreateMovieService createMovieService) { 
+            
+            _createMovieService = createMovieService;
+            
+        }
+
         [HttpGet]
         public async Task<ActionResult<List<Movie>>> GetAllMovies()
         {
@@ -24,12 +33,24 @@ namespace FilmFocusApi.Infrastructure.Adapters.Input
         [HttpPost]
         public async Task<ActionResult<Movie>> CreateMovie([FromForm]MovieInsertDTO movieInsertDTO)
         {
+            try
+            {
+                Movie newMovie = await _createMovieService.CreateMovie(movieInsertDTO);
 
-            return Ok( new Movie { Id = 1, Name = movieInsertDTO.Name, ImageUrl= "www.helloWorld.com", ReleaseDate= movieInsertDTO.ReleaseDate, Score= movieInsertDTO.Score});
+                return Ok(newMovie);
 
+            }
+            catch (KeyNotFoundException ex) 
+            {
+                return BadRequest(ex.Message);  
             
+            }
+            catch (ApplicationException ex)
+            {
+                return StatusCode(500, new {message = ex.Message}); 
+            }
 
-            //throw new NotImplementedException("Unimplemented endpoint");
+           
         }
 
         [HttpPut("{id}")]

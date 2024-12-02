@@ -10,7 +10,7 @@ namespace FilmFocusApi.Infrastructure.Adapters.Output
 
         private readonly ApplicationDbContext _context;
 
-        MovieRepository(ApplicationDbContext context)
+        public MovieRepository(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -29,10 +29,12 @@ namespace FilmFocusApi.Infrastructure.Adapters.Output
             return movie;
         }
 
-        public async Task CreateMovie(Movie movie)
+        public async Task<Movie> CreateMovie(Movie movie)
         {
             await _context.Movies.AddAsync(movie);
             await _context.SaveChangesAsync();
+
+            return movie;
         }
 
         public async Task UpdateMovie (int id, Movie movie)

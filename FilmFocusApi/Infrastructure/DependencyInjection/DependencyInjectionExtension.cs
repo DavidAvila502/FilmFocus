@@ -4,6 +4,7 @@ using FilmFocusApi.Application.OutputPorts;
 using FilmFocusApi.Application.Services.Authentication;
 using FilmFocusApi.Application.Services.MovieServices;
 using FilmFocusApi.Infrastructure.Adapters.Output;
+using FilmFocusApi.Infrastructure.Adapters.Output.ExternalServices.CloudinaryExternalServices;
 
 namespace FilmFocusApi.Infrastructure.DependencyInjection
 {
@@ -18,7 +19,8 @@ namespace FilmFocusApi.Infrastructure.DependencyInjection
             //Services
             services.AddSingleton<IGenerateJwtTokenService, GenerateJwtTokenService>();
             services.AddTransient<IAuthenticateUserService, AuthenticateUserService>();
-            services.AddSingleton<ICreateMovieService, CreateMovieService>();
+            services.AddTransient<ICreateMovieService, CreateMovieService>();
+            services.AddSingleton<IUploadImageCloudinaryExternalService,UploadImageCloudinaryService>();
 
 
             return services;

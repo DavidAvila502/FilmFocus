@@ -9,7 +9,7 @@ namespace FilmFocusApi.Application.OutputPorts
 
         public Task<Movie?> GetMovieById(int id);
 
-        public Task CreateMovie(Movie movie);
+        public Task<Movie> CreateMovie(Movie movie);
 
         public Task UpdateMovie(int id ,Movie movie);
 

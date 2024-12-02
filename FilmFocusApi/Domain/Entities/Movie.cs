@@ -6,7 +6,7 @@ namespace FilmFocusApi.Domain.Entities
     public class Movie
     {
         [Column("movieId")]
-        public required int Id { get; set; }
+        public  int Id { get; set; }
         [Column("movieName")]
         public required string Name { get; set; }
         [Column("score")]
@@ -16,7 +16,7 @@ namespace FilmFocusApi.Domain.Entities
         [Column("synopsis")]
         public string Synopsis { get; set; }
         [Column("imageUrl")]
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
     }
 }
