@@ -22,6 +22,7 @@ namespace FilmFocusApi.Application.Services.Authentication
                 new Claim(ClaimTypes.NameIdentifier, googleId),
                 new Claim(ClaimTypes.Email, email),
                 new Claim(ClaimTypes.Name, name),
+                new Claim(ClaimTypes.Role , "User")
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));

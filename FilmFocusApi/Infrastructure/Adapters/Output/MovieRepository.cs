@@ -39,7 +39,6 @@ namespace FilmFocusApi.Infrastructure.Adapters.Output
 
         public async Task UpdateMovie (int id, Movie movie)
         {
-
             Movie foundMovie = await _context.Movies.SingleOrDefaultAsync(m => m.Id == id);
 
             foundMovie!.Name = movie.Name;
@@ -47,6 +46,8 @@ namespace FilmFocusApi.Infrastructure.Adapters.Output
             foundMovie!.ReleaseDate = movie.ReleaseDate;
             foundMovie!.Synopsis = movie.Synopsis;
             foundMovie!.ImageUrl = movie.ImageUrl;
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteMovie(Movie movie)

@@ -20,6 +20,12 @@ namespace FilmFocusApi.Infrastructure.DependencyInjection
             services.AddSingleton<IGenerateJwtTokenService, GenerateJwtTokenService>();
             services.AddTransient<IAuthenticateUserService, AuthenticateUserService>();
             services.AddTransient<ICreateMovieService, CreateMovieService>();
+            services.AddTransient<IUpdateMovieService, UpdateMovieService>();
+            services.AddTransient<IDeleteMovieService, DeleteMovieService>();
+            services.AddTransient<IGetAllMoviesService, GetAllMoviesService>();
+            services.AddTransient<IGetMovieByIdService, GetMovieByIdService>();
+
+            //External services
             services.AddSingleton<IUploadImageCloudinaryExternalService,UploadImageCloudinaryService>();
 
 
