@@ -15,6 +15,9 @@ namespace FilmFocusApi.Infrastructure.Database
 
         public DbSet<Review> Reviews { get; set; }
 
+        public DbSet<Actor> Actors { get; set; }
+
+        public DbSet<MoviesActors> MoviesActors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,7 +31,10 @@ namespace FilmFocusApi.Infrastructure.Database
             //Reviews 
             modelBuilder.Entity<Review>().ToTable("Reviews").Property(r => r.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Review>().Property(r => r.ReviewDate).ValueGeneratedOnAdd();
-
+            //Actors 
+            modelBuilder.Entity<Actor>().ToTable("Actors").Property(a => a.Id).ValueGeneratedOnAdd();
+            //ActorsMovies
+            modelBuilder.Entity<MoviesActors>().ToTable("MoviesActors");
 
 
         }
