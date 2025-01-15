@@ -8,7 +8,7 @@ namespace FilmFocusApi.Application.OutputPorts
 
         public Task<Actor?> GetActorById(int Id);
 
-        public Task CreateActor(MoviesActors movieActor, Actor actor);
+        public Task CreateActor( Actor actor);
 
         public Task UpdateActor( Actor actor);
 

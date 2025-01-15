@@ -5,11 +5,9 @@
     {
         public required int ActorId { get; set; }
 
-        public required int MovieId { get; set; }
-
         public required string ActorName { get; set; }
 
-        public string? ImageUrl { get; set; }
+        public IFormFile? Image { get; set; }
 
     }
 }

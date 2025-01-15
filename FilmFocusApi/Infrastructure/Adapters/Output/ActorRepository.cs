@@ -29,11 +29,9 @@ namespace FilmFocusApi.Infrastructure.Adapters.Output
             return actor;
         }
 
-        public async Task CreateActor(MoviesActors movieActor,Actor actor) 
+        public async Task CreateActor(Actor actor) 
         { 
            _context.Actors.Add(actor);
-
-            _context.MoviesActors.Add(movieActor);
 
             await _context.SaveChangesAsync();
         
