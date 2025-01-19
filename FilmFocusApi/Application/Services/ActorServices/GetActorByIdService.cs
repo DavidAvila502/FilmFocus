@@ -1,25 +1,24 @@
 ﻿using FilmFocusApi.Application.Interfaces.ActorInterfaces;
+using FilmFocusApi.Application.OutputPorts;
 using FilmFocusApi.Domain.Entities;
-using FilmFocusApi.Infrastructure.Database;
 
 namespace FilmFocusApi.Application.Services.ActorServices
 {
     public class GetActorByIdService : IGetActorByIdService
     {
 
-        public readonly ApplicationDbContext _context;
+        public readonly IActorRepository _repository;
 
-        public GetActorByIdService(ApplicationDbContext context)
+        public GetActorByIdService(IActorRepository repository)
         {
-            _context = context;
-
+            _repository = repository;
         }
 
-        public async Task<Actor> GetActorById(int id)
+        public async Task<Actor?> GetActorById(int id)
         {
             try
             {
-                Actor? actor = await _context.Actors.FindAsync(id);
+                Actor? actor = await _repository.GetActorById(id);
 
                 if (actor == null)
                 {
@@ -33,7 +32,6 @@ namespace FilmFocusApi.Application.Services.ActorServices
                 throw new ApplicationException("Something was wrong trying to get the requested actor.");
 
             }
-
         }
     } 
 

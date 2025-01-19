@@ -1,25 +1,23 @@
 ﻿using FilmFocusApi.Application.Interfaces.ActorInterfaces;
+using FilmFocusApi.Application.OutputPorts;
 using FilmFocusApi.Domain.Entities;
-using FilmFocusApi.Infrastructure.Database;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace FilmFocusApi.Application.Services.ActorServices
 {
     public class GetAllActorsService:IGetAllActorsService
     {
+        public readonly IActorRepository _repository;
 
-
-        public readonly ApplicationDbContext _context;
-
-        public GetAllActorsService( ApplicationDbContext context) { 
-            _context = context;
+        public GetAllActorsService( IActorRepository repository) { 
+            _repository = repository;
         }
 
         public async Task<List<Actor>> GetAllActors()
         {
             try
             {
-                List<Actor> actors = await _context.Actors.ToListAsync();
+                List<Actor> actors = await _repository.GetAllActors();
 
                 return actors;
             }
@@ -28,7 +26,5 @@ namespace FilmFocusApi.Application.Services.ActorServices
                 throw new ApplicationException("Error trying to get all the actors.");
             }
         }
-
-
     }
 }
