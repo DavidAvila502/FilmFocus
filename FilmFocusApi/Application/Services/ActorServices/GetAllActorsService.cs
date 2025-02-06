@@ -23,7 +23,7 @@ namespace FilmFocusApi.Application.Services.ActorServices
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("Error trying to get all the actors.");
+                throw new ApplicationException("Something was wrong trying to get the actors.");
             }
         }
     }

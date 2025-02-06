@@ -34,7 +34,7 @@ namespace FilmFocusApi.Infrastructure.Database
             //Actors 
             modelBuilder.Entity<Actor>().ToTable("Actors").Property(a => a.Id).ValueGeneratedOnAdd();
             //ActorsMovies
-            modelBuilder.Entity<MoviesActors>().ToTable("MoviesActors");
+            modelBuilder.Entity<MoviesActors>().ToTable("MoviesAtors").HasNoKey();
 
 
         }

@@ -1,7 +1,9 @@
-﻿using FilmFocusApi.Application.Interfaces.Authentication;
+﻿using FilmFocusApi.Application.Interfaces.ActorInterfaces;
+using FilmFocusApi.Application.Interfaces.Authentication;
 using FilmFocusApi.Application.Interfaces.MovieInterfaces;
 using FilmFocusApi.Application.Interfaces.ReviewInterfaces;
 using FilmFocusApi.Application.OutputPorts;
+using FilmFocusApi.Application.Services.ActorServices;
 using FilmFocusApi.Application.Services.Authentication;
 using FilmFocusApi.Application.Services.MovieServices;
 using FilmFocusApi.Application.Services.ReviewServices;
@@ -15,24 +17,32 @@ namespace FilmFocusApi.Infrastructure.DependencyInjection
         public static IServiceCollection AddDependencyInjectionServices(this IServiceCollection services)
         {
             //Repositories
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IMovieRepository, MovieRepository>();
-            services.AddTransient<IReviewRepository, ReviewRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
+            services.AddScoped<IActorRepository, ActorRepository>();
 
             //Services
             services.AddSingleton<IGenerateJwtTokenService, GenerateJwtTokenService>();
-            services.AddTransient<IAuthenticateUserService, AuthenticateUserService>();
+            services.AddScoped<IAuthenticateUserService, AuthenticateUserService>();
 
-            services.AddTransient<ICreateMovieService, CreateMovieService>();
-            services.AddTransient<IUpdateMovieService, UpdateMovieService>();
-            services.AddTransient<IDeleteMovieService, DeleteMovieService>();
-            services.AddTransient<IGetAllMoviesService, GetAllMoviesService>();
-            services.AddTransient<IGetMovieByIdService, GetMovieByIdService>();
+            services.AddScoped<ICreateMovieService, CreateMovieService>();
+            services.AddScoped<IUpdateMovieService, UpdateMovieService>();
+            services.AddScoped<IDeleteMovieService, DeleteMovieService>();
+            services.AddScoped<IGetAllMoviesService, GetAllMoviesService>();
+            services.AddScoped<IGetMovieByIdService, GetMovieByIdService>();
 
-            services.AddTransient<ICreateReviewService, CreateReviewService>();
-            services.AddTransient<IDeleteReviewService, DeleteReviewService>();
-            services.AddTransient<IGetAllReviewsService, GetAllReviewsService>();
-            services.AddTransient<IGetReviewByIdService, GetReviewByIdService>();
+            services.AddScoped<ICreateReviewService, CreateReviewService>();
+            services.AddScoped<IDeleteReviewService, DeleteReviewService>();
+            services.AddScoped<IGetAllReviewsService, GetAllReviewsService>();
+            services.AddScoped<IGetReviewByIdService, GetReviewByIdService>();
+
+            services.AddScoped<IGetAllActorsService,GetAllActorsService>();
+            services.AddScoped<IGetActorByIdService, GetActorByIdService>();
+            services.AddScoped<ICreateActorService, CreateActorService>();
+            services.AddScoped<IUpdateActorService, UpdateActorService>();
+            services.AddScoped<IDeleteActorService, DeleteActorService>();
+
 
             //External services
             services.AddSingleton<IUploadImageCloudinaryExternalService, UploadImageCloudinaryService>();

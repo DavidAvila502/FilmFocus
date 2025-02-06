@@ -2,7 +2,7 @@
 
 namespace FilmFocusApi.Domain.Entities
 {
-    [Table("MoviesActors")]
+    [Table("MoviesAtors")]
     public class MoviesActors
     {
         [Column("movieId")]
